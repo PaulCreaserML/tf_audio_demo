@@ -1,0 +1,64 @@
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands"></script>
+  <style>
+    .capture {
+      border: 1px outset black;
+      background-color: lightblue;
+      text-align: center;
+      padding: 10px;
+    }
+    .train {
+      border: 1px outset black;
+      background-color: lightblue;
+      text-align: center;
+      padding: 10px;
+    }
+    .test {
+      border: 1px outset black;
+      background-color: lightblue;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <title>Simple Training Demo</title>
+  <p align="center">Simple Training Demo</p>
+  <div class="capture">
+  <h2>Audio Capture</h2>
+  <canvas id="myCanvas" width="696" height="200"></canvas>
+  <button id="captureCount">Count</button>
+  <button id="captureCountValue">0</button>
+  <br/><br/>
+  <button id="button0" onmousedown="collect(0)" onmouseup="collect(null)">Left</button>
+  <button id="button1" onmousedown="collect(1)" onmouseup="collect(null)">Right</button>
+  <button id="button2" onmousedown="collect(2)" onmouseup="collect(null)">Background Noise</button>
+  <button id="captureReset" onclick="captureReset()">Capture Reset</button>
+  Left, Right Threshold (dB): <input id="thresholdDb" type="number" min="-60" max="-20" value="-40" onchange="thresholdChange()">
+  Current peak: <button id="currentVolume">-</button> dB
+  </div>
+  <div class="train">
+  <h2>Model Training</h2>
+  <button id="train"  onclick="train()">Start</button>
+  Epoch Limit: <input id="epochLimit" type="number" min="10" max="20" value="10" onchange="epochChange()">
+  <button id="epochs">Epochs: 0 of ?</button>
+  <button id="accuracy">Accuracy: 0</button>
+  </div>
+  <div class="test">
+  <h2>Test Model</h2>
+  <button id="listen" onclick="listen()">Listen</button>
+  <input type="range" id="output" min="0" max="10" step="0.1">
+  <button id="reset"  onclick="reset()">Reset</button>
+  <br/><br/>
+  <button id="dispButton0">Left</button>
+  <button id="dispButton2">Background Noise</button>
+  <button id="dispButton1">Right</button>
+  <br/><br/>
+  Threshold %: <input id="thresholdPer" type="number" min="70" max="99" value="-80" onchange="thresholdPerChange()">
+  </div>
+  <div id="console"></div>
+  <script src="demo2.js"></script>
+</body>
+</html>
